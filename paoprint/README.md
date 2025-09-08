@@ -1,10 +1,26 @@
-# Pao Print
+# PaoPrint
 
-Basically this lets you print at YK Pao School Songjiang Campus.
+[YK Pao School](https://ykpaoschool.cn) (Songjiang Campus) has a student
+printing service. However, the IT department only provides drivers for macOS.
 
-## Features
+I dislike the design of CUPS and I've found very little documentation on how to
+write CUPS drivers. This is a simple program that accepts a PostScript file and
+sends it to the printer using the strange LPD-PJL-PDL-whatever protocol.
 
-- [X] [LPD](https://www.rfc-editor.org/rfc/rfc1179.txt) implementation (allows for printing raw PJL files that encapsulate PostScript)
-- [ ] [PJL](https://developers.hp.com/hp-printer-command-languages-pcl/doc/print-job-language-pjl) implementation (allows for printing PostScript files)
-- [ ] PostScript augmentation scripts (allows for setting options such as paper size, staple location, simplex/duplex, might also do PDF to PostScript conversion here)
-- [ ] CUPS integration
+## Build
+
+This program is written in [Hare](https://harelang.org) and only requires
+the standard library. Just use `hare build .`.
+
+## Usage
+
+```
+paoprint: LPD print client                                                       
+                                                                                   
+Usage: paoprint [-h] [-f <file>] [-u <user>] [-p <pass>]                         
+                                                                                   
+-h: print this help text                                                           
+-f <file>: file to print                                                           
+-u <user>: username                                                                
+-p <pass>: password       
+```

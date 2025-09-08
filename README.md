@@ -8,7 +8,7 @@
 | `ykpsmuttauth` | Get Outlook XOAUTH2 tokens for mutt/aerc               | Go       |                                                                                                                                                                       |
 | `cieresults`   | Poll the IGCSE results page to IRC                     | Python   | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [miniirc](https://github.com/luk3yx/miniirc)      |
 | `calgen`       | Generate iCalendar from PowerSchool timetables         | Python   | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [Ics.py](https://icspy.readthedocs.io/en/stable/) |
-| `paoprint`     | LPD/PDL student printer driver for the SJ Campus       | C        | [Ghostscript](https://www.ghostscript.com)                                                                                                                            |
+| `paoprint`     | LPD/PDL student printer driver for the SJ Campus       | Hare     |                                                                                                                                                                       |
 
 ## Build
 
