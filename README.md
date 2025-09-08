@@ -13,7 +13,6 @@ at YK Pao School
 | `calgen`        | Generate iCalendar from PowerSchool timetables         | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [Ics.py](https://icspy.readthedocs.io/en/stable/) |
 | `paoprint`      | LPD/PDL student printer driver for the SJ Campus       | [Hare](https://harelang.org) |                                                                                                                                                                       |
 | `polltimetable` | Poll PowerSchool until your timetable is out           | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), `/sbin/sendmail`                                  |
-|
 
 ## Build
 
