@@ -1,3 +1,0 @@
-miniirc
-requests
-beautifulsoup4

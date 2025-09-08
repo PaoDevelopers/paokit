@@ -9,10 +9,7 @@ at YK Pao School
 | `pdfutils`      | Scripts to manipulate PDFs                             | Shell                        | [Ghostscript](https://www.ghostscript.com), [Chromium](https://www.chromium.org)                                                                                      |
 | `sjauth`        | Log on to [STUWIRELESS](https://ykps.runxiyu.org/wifi) | C                            | [libcurl](https://curl.se/libcurl/)                                                                                                                                   |
 | `ykpsmuttauth`  | Get Outlook XOAUTH2 tokens for mutt/aerc               | Go                           |                                                                                                                                                                       |
-| `cieresults`    | Poll the IGCSE results page to IRC                     | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [miniirc](https://github.com/luk3yx/miniirc)      |
-| `calgen`        | Generate iCalendar from PowerSchool timetables         | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [Ics.py](https://icspy.readthedocs.io/en/stable/) |
 | `paoprint`      | LPD/PDL student printer driver for the SJ Campus       | [Hare](https://harelang.org) |                                                                                                                                                                       |
-| `polltimetable` | Poll PowerSchool until your timetable is out           | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), `/sbin/sendmail`                                  |
 
 ## Build
 
