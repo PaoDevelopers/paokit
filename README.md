@@ -1,14 +1,19 @@
-# Scripts, utilities, and other files related to life at YK Pao School
+# PaoKit
 
-| Name           | Description                                            | Language | Dependencies                                                                                                                                                          |
-| -------------- | ------------------------------------------------------ | -------- | ---------------------------------------                                                                                                                               |
-| `chphoto`      | Change Outlook profile photos                          | Go       | [MSAL](https://github.com/AzureAD/microsoft-authentication-library-for-go)                                                                                            |
-| `pdfutils`     | Scripts to manipulate PDFs                             | Shell    | [Ghostscript](https://www.ghostscript.com), [Chromium](https://www.chromium.org)                                                                                      |
-| `sjauth`       | Log on to [STUWIRELESS](https://ykps.runxiyu.org/wifi) | C        | [libcurl](https://curl.se/libcurl/)                                                                                                                                   |
-| `ykpsmuttauth` | Get Outlook XOAUTH2 tokens for mutt/aerc               | Go       |                                                                                                                                                                       |
-| `cieresults`   | Poll the IGCSE results page to IRC                     | Python   | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [miniirc](https://github.com/luk3yx/miniirc)      |
-| `calgen`       | Generate iCalendar from PowerSchool timetables         | Python   | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [Ics.py](https://icspy.readthedocs.io/en/stable/) |
-| `paoprint`     | LPD/PDL student printer driver for the SJ Campus       | Hare     |                                                                                                                                                                       |
+PaoKit is a collection of scripts, utilities, and other files related to life
+at YK Pao School
+
+| Name            | Description                                            | Language                     | Dependencies                                                                                                                                                          |
+| --------------- | ------------------------------------------------------ | ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `chphoto`       | Change Outlook profile photos                          | Go                           | [MSAL](https://github.com/AzureAD/microsoft-authentication-library-for-go)                                                                                            |
+| `pdfutils`      | Scripts to manipulate PDFs                             | Shell                        | [Ghostscript](https://www.ghostscript.com), [Chromium](https://www.chromium.org)                                                                                      |
+| `sjauth`        | Log on to [STUWIRELESS](https://ykps.runxiyu.org/wifi) | C                            | [libcurl](https://curl.se/libcurl/)                                                                                                                                   |
+| `ykpsmuttauth`  | Get Outlook XOAUTH2 tokens for mutt/aerc               | Go                           |                                                                                                                                                                       |
+| `cieresults`    | Poll the IGCSE results page to IRC                     | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [miniirc](https://github.com/luk3yx/miniirc)      |
+| `calgen`        | Generate iCalendar from PowerSchool timetables         | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), [Ics.py](https://icspy.readthedocs.io/en/stable/) |
+| `paoprint`      | LPD/PDL student printer driver for the SJ Campus       | [Hare](https://harelang.org) |                                                                                                                                                                       |
+| `polltimetable` | Poll PowerSchool until your timetable is out           | Python                       | [requests](http://docs.python-requests.org/), [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/), `/sbin/sendmail`                                  |
+|
 
 ## Build
 
