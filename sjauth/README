@@ -1,27 +1,144 @@
-sjauth(1)		    General Commands Manual		     sjauth(1)
+SJAUTH(1)		    General Commands Manual		     SJAUTH(1)
 
 NAME
-     sjauth – authenticate to YK Pao School's STUWIRELESS captive portal
+     sjauth - authenticate to YK Pao School's YKPS_Student captive portal
 
 SYNOPSIS
      sjauth username passvar
 
 DESCRIPTION
-     The sjauth script makes a single HTTP request to YK Pao School's
-     STUWIRELESS captive portal to authenticate users.
+     The sjauth	script makes a single HTTP request to YK Pao School's
+     `YKPS_Student' captive portal to authenticate users.
 
      The arguments are as follows:
 
      username
-	     Your YK Pao School username (such as s65535)
+	     Your YK Pao School	username (such as s65535)
 
      passvar
-	     The name of an environment variable containing your password
+	     The name of an environment	variable containing your password
+
+CONFIGURATION
+   Talk	To The IT
+     If	you have new devices, you must contact the IT and have them record
+     your permanent MAC	address	and username.  They will assign	you a fixed
+     IPv4 address on the DHCP server.
+
+   NetworkManager For Linux-Based Systems
+     Add the following to
+     /etc/NetworkManager/system-connections/ykps.nmconnection
+
+	   [connection]
+	   # Any user-friendly name will do
+	   id=YKPS
+	   # Random UUID, just make sure it doesn't collide
+	   uuid=980c8380-18e5-4dca-b4ef-f8f8378e9994
+	   type=wifi
+
+	   [wifi]
+	   # https://fedoraproject.org/wiki/Changes/StableSSIDMACAddress
+	   cloned-mac-address=permanent
+	   # 1 = "never"
+	   mac-address-randomization=1
+	   mode=infrastructure
+	   ssid=YKPS_Student
+
+	   [wifi-security]
+	   key-mgmt=wpa-eap
+
+	   [802-1x]
+	   # Technically it would be more secure against evil-twin attacks
+	   # if	we pinned certificates but I don't want	to bother
+	   # getting a certificate because our IT doesn't provide one.	Welp.
+
+	   # Don't change anonymous-identity
+	   anonymous-identity=student@ykpaoschool.cn
+	   eap=peap;
+	   # Replace the two following lines with your credentials!
+	   identity=username
+	   password=password
+	   # Allow insecure TLS	1.0 (used by stuff like	eduroam	and YKPS_Student)
+	   phase1-auth-flags=32
+	   phase2-auth=mschapv2
+
+	   [ipv4]
+	   method=auto
+
+	   [ipv6]
+	   addr-gen-mode=default
+	   method=auto
+
+     Remember to set the file ownership	to `root:root' and permissions to
+     0600.  Also remember that comments	must begin at the start	of the line.
+     See nm-settings-keyfile(5)	for details.
+
+     Then you should be	able to	just reload the	NetworkManager service,	and
+     connect with `nmcli connection up YKPS' or	whatever utility your desktop
+     environment provides.
+
+     If	you wish to use	a static IP, replace the `[ipv4]' block	with the
+     following and modify `XXX'	to fit your assigned IPv4 address:
+
+	   [ipv4]
+	   address1=10.2.XXX.XXX/21,10.2.191.253
+	   dns=10.2.20.101;10.2.20.100;10.2.120.21;
+	   dns-search=ykpaoschool.cn;
+	   may-fail=false
+	   method=manual
+
+     You still need to use the network authentication portal.  A simple	C
+     program: https://git.sr.ht/~runxiyu/tooch/tree/master/sjauth is available
+     to	automate this process that only	depends	on libcurl; you	may want to
+     run this every 6 AM and at	power-on if 6 AM was missed, for example, via
+     anacron(8).
+
+   Manual Supplicants
+     If	you wish to manually use wpa_supplicant(8), in additional to the
+     "standard"	configuration, you need	to add `tls_disable_tlsv1_0=0' to the
+     `phase1' flags.  On most systems,
+     /usr/share/doc/wpa_supplicant/examples/wpa_supplicant.conf	is a well-
+     documented	example	configuration file that	should cover all your needs.
+
+     I do not personally use iwd(8), and I don't see an	option to allow
+     insecure versions of TLS from a quick skim	of the man page.  Please help
+     document this, if possible.
+
+   OpenBSD
+     OpenBSD's WiFi drivers do not directly support 802.1x (see, for example,
+     bwfm(4) for Apple Silicon systems).  You need to use wpa_supplicant(8).
+     The usual guidance	on wpa_supplicant on OpenBSD:
+     https://codeberg.org/OpenBSD/ports/raw/branch/master/security/wpa_supplicant/pkg/README
+     applies.
+
+     Note that TLS v1.1	and earlier have been removed from LibreSSL; therefore
+     you must use the `-openssl' variants of the wpa_supplicant(8) package,
+     and add the `phase1' flags	as noted previously, along with
+     `phase1="allow_unsafe_renegotiation=1"'.
+
+	   rcctl enable	wpa_supplicant
+	   rcctl set wpa_supplicant flags -c ${SYSCONFDIR}/wpa_supplicant.conf -s -D openbsd -i	bwfm0
+
+   macOS
+     Connect to	the `YKPS_Student' network with	your normal school
+     credentials.
+
+     Every morning (after 6 AM), you must log in at the	network	captive	portal
+     at	https://sjauth.ykpaoschool.cn:444/:
+     https://sjauth.ykpaoschool.cn:444/.
+
+   iPadOS
+     Be	sure that "Private WLAN	Address" is disabled in	the `YKPS_Student'
+     network's properties.  Then connect to the	network	with your normal
+     school credentials.
+
+     Every morning (after 6 AM), you must log in at the	network	captive	portal
+     at	https://sjauth.ykpaoschool.cn:444/:
+     https://sjauth.ykpaoschool.cn:444/.
+
+HELP
+     No.
 
 AUTHORS
-     Runxi Yu <me@runxiyu.org>
+     Runxi Yu <runxiyu@umich.edu>
 
-BUGS
-     Send mail to <~runxiyu/public-inbox@list.sr.ht>
-
-YK Pao School Utilities		August 10, 2024	       YK Pao School Utilities
+YK Pao School Utilities		 April 8, 2026	       YK Pao School Utilities
