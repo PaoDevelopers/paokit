@@ -11,6 +11,40 @@ use os;
 use strings;
 use time;
 
+// WARNING WARNING WARNING. 
+// The crypto here is *bullshit*. DO NOT USE RC4. 
+// This is *not* an example on how to do crypto. 
+// Guide on how to do crypto: 
+// (1) Don't. Use an existing mature library or framework. Unlike most of other
+// parts of programming, cryptography is not "simple and obvious = better". 
+// (2) If there is a genuine need for one, crypto101 and the djb papers are a
+// reasonable start. Look at how real protocol frameworks like Noise, WireGuard,
+// and to a lesser extent, TLS 1.3, works. (TLS 1.3 to a lesser extent because
+// ASN.1 parser are a pain and it still tries to be somewhat agile.
+// Cryptographic agility is a bane. Also read some of Moxie's blog posts e.g.
+// the cryptographic doom principle.) AND GET YOUR SHIT FORMALLY VERIFIED BY
+// CRYPTOGRAPHERS, and *additionally* screen for side channel attacks. If you
+// don't want to, see (1) again.
+
+// I have a few complaints about our school's WiFi portal's security.
+//
+// (1) No TLS.
+// (2) RC4 is shit.
+// (3) Using a timestamp.
+// (4) Sending the key along with the ciphertext in a symmetric cipher.
+//
+// Of course, their arugment is *obviously* going to be that
+// RC4 is post-quantum safe because Shor's doesn't apply
+// and only Groover's algorithm applies (citation needed).
+// Thus, using a broken algorithm from the last century
+// is obviously worth it.
+// Especially when using symmetric crypto and...
+// sending the key along with the ciphertext.
+//
+// Please, just send the password over TLS,
+// or use something like 9front's dp9ik.
+//
+// Alternatively, use rot13.
 fn rc4_hex(plain: str, rc4key: str) (str | nomem) = {
 	const pb = strings::toutf8(plain);
 	const kb = strings::toutf8(rc4key);
